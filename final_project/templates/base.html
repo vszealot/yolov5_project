@@ -1,0 +1,632 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+	Awesome Responsive Template
+	templatestock.co
+-->
+<html>
+<head>
+	<title>뭐 먹언?</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/south-street/jquery-ui.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+	<!-- Goggle Font -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+
+	<!-- Font Css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+	<!-- Calorie_page CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'calorie/calorie.css' %}">
+
+	<!-- Animation Css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+</head>
+<body>
+<!-- Header -->
+{% csrf_token %}
+<div class="header-div" style="height:300px;">
+
+<nav class="navbar navbar-default">
+  <div class="container">
+  {% if user.is_authenticated %}
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header logo-div bounceInLeft wow" data-wow-duration="2s">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand" id="span_head_username">{{ user.username }} 님</span>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse top-right-menu-ul bounceInRight wow" id="bs-example-navbar-collapse-1" data-wow-duration="4s">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'main:main' %}">Main</a></li>
+        <li><a href="{% url 'camera_main:camera' %}">Camera</a></li>
+        <li><a href="{% url 'calorie:calorie' %}">Calorie</a></li>
+        <li><a href="{% url 'common:logout' %}">Logout</a></li>
+      </ul>
+    </div><!-- End navbar-collapse -->
+  {% endif %}
+  </div><!-- End container -->
+</nav>
+
+<div class="container wow bounceInDown" data-wow-duration="5s">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 text-center slide-text">
+			<h1>뭐 먹언?</h1>
+		</div><!-- End col-md-8-->
+		<div class="col-md-offset-2"></div><!-- End col-md-offset-2 -->
+	</div><!-- End Row -->
+</div><!-- End Contanier -->
+
+</div><!-- End header-div -->
+
+<!-- Feature -->
+<div class="container" id="features">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="main_heading">
+				<h1>Features</h1>
+				<div class="text-center"><span class="underline"></span></div>
+			</div>
+		</div><!-- End col-md-12 -->
+	</div><!-- End row -->
+
+	<div class="row">
+		<a href="{% url 'camera_main:camera' %}">
+		<div class="col-md-3 col-sm-6">
+			<div class="features-div">
+			   <i class="fa fa-mobile"></i>
+			   <h4>Camera</h4>
+			   <p>사진을 찍어서 간편하게 식단을 관리해보세요</p>
+			</div>
+		</div><!-- End col-md-3-->
+		</a><!-- End camera link -->
+		<a href="{% url 'calorie:calorie' %}">
+		<div class="col-md-3 col-sm-6">
+			<div class="features-div">
+			   <i class="fa fa-pencil"></i>
+			   <h4>Calorie</h4>
+			   <p>내가 섭취한 칼로리 정보를 확인해보세요</p>
+			</div>
+		</div><!-- End col-md-3-->
+		</a><!-- End Calorie link -->
+		<a href="#">
+		<div class="col-md-3 col-sm-6">
+			<div class="features-div">
+			   <i class="fa fa-code"></i>
+			   <h4>SNS</h4>
+			   <p>식단에 대한 통계 정보를 살펴보고 SNS에 나의 식단을 공유해보세요</p>
+			</div>
+		</div><!-- End col-md-3-->
+		</a><!-- End SNS link -->
+		<a href="#">
+		<div class="col-md-3 col-sm-6">
+			<div class="features-div">
+			   <i class="fa fa-life-ring"></i>
+			   <h4>Browser</h4>
+			   <p>추천 시스템을 통해서 메뉴를 추천받아보세요</p>
+			</div>			
+		</div><!-- End col-md-3-->
+		</a><!-- End browser link -->
+
+	</div><!-- End row -->
+</div><!-- End Container -->
+
+<!-- End Feature -->
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+<!--&lt;!&ndash; About &ndash;&gt;-->
+<!--<div class="call-action-color" id="About">-->
+<!--	<div class="container">-->
+<!--		<div class="row">-->
+<!--			<div class="col-md-12">-->
+<!--				<div class="main_heading">-->
+<!--					<h1>About</h1>-->
+<!--					<div  class="text-center"><span class="underline"></span></div>-->
+<!--				</div>-->
+<!--			</div>&lt;!&ndash; End col-md-12 &ndash;&gt;-->
+<!--		</div>&lt;!&ndash; End row &ndash;&gt;-->
+
+<!--		<div class="col-md-12">-->
+<!--			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>-->
+<!--		</div>&lt;!&ndash; End col-md-12&ndash;&gt;-->
+
+<!--	</div>&lt;!&ndash; End container &ndash;&gt;	-->
+<!--</div>-->
+
+<!--&lt;!&ndash; End About &ndash;&gt;-->
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer>-->
+<!--    <div class="container">-->
+<!--    	<div class="row">-->
+<!--            <div class="col-sm-12 footer-social">-->
+<!--            	<a href="#"><i class="fa fa-facebook"></i></a>-->
+<!--		    	<a href="#"><i class="fa fa-dribbble"></i></span></a>-->
+<!--		        <a href="#"><i class="fa fa-twitter"></i></a>            	-->
+<!--            	<a href="#"><i class="fa fa-instagram"></i></a>-->
+<!--            	<a href="#"><i class="fa fa-google-plus"></i></a>-->
+<!--            	<a href="#"><i class="fa fa-pinterest"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+<!--&lt;!&ndash; End Footer &ndash;&gt;-->
+
+
+<script type="text/javascript" src="{% static 'js/jquery-main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	axios.defaults.xsrfCookieName = 'csrftoken'
+	axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
+	$( function() {
+		$( ".datepicker" ).datepicker({
+            onSelect: function(dateText) {
+                console.log("Selected date: " + dateText + "; input's current value: " + this.value);
+		        $(this).change();
+		    }
+		})
+        .on("change", function() {
+            console.log("Got change event from field");
+        });
+	} );
+
+	var app2 = new Vue({
+		delimiters: ['[[', ']]'],
+		el : "#image_iuput_form",
+		data () {
+			return {
+				input_date : ""
+			}
+		},
+		mounted : function(){
+			var ourDate = new Date();
+
+			this.input_date = ourDate.toLocaleDateString('en-US', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+			})
+		}
+	})
+
+	var app = new Vue({
+		delimiters: ['[[', ']]'],
+		el : "#app",
+		data () {
+			return {
+				datas : null,
+				end_date : "",
+				start_date : "",
+				username : "{{ user.username }}",
+				check : false
+			}
+		},
+		mounted : function(){
+			var ourDate = new Date();
+
+			this.end_date = ourDate.toLocaleDateString('en-US', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+			})
+
+			// 7일전으로 설정
+			var pastDate = ourDate.getDate() - 7;
+			ourDate.setDate(pastDate);
+
+			this.start_date = ourDate.toLocaleDateString('en-US', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+			})
+			console.log(this.end_date)
+			axios
+				.post('http://127.0.0.1:8000/main/getDatas/', {
+					start_date : this.start_date,
+					end_date : this.end_date,
+					username : this.username
+				})
+				.then(response=>(this.datas = response.data.datas))
+			console.log(this.start_date)
+		},
+		updated() {
+			if (this.check) {
+				this.$nextTick(function () {
+					axios
+						.post('http://127.0.0.1:8000/main/getDatas/', {
+							start_date : this.start_date,
+							end_date : this.end_date,
+							username : this.username
+						})
+						.then(response=>(this.datas = response.data.datas))
+				})
+			}
+			this.check = false
+		}
+	})
+
+	$( "#main_start_date" ).datepicker({
+		onSelect: function(dateText) {
+			app.start_date = dateText;
+			app.check = true;
+		}
+	})
+
+	$( "#main_end_date" ).datepicker({
+		onSelect: function(dateText) {
+			app.end_date = dateText;
+			app.check = true;
+		}
+	})
+
+	var vm = new Vue({
+		delimiters: ['[[', ']]'],
+		el: '#calorie_app',
+		data() {
+			return {
+				dataset: null,
+				username: '',
+				calorie_date: '',
+				check: false,
+				errored:false,
+				loading:true
+			}
+		},
+		mounted() {
+			var ourDate = new Date();
+
+			this.calorie_date = ourDate.toLocaleDateString('en-US', {
+				year: 'numeric',
+				day: '2-digit',
+				month: '2-digit',
+			})
+
+			this.username = document.getElementById('span_head_username').innerHTML;
+
+			axios
+				.post('http://127.0.0.1:8000/calorie_page/get_calorie_info/',{
+					calorie_date : this.calorie_date,
+					username: this.username
+				})
+				.then(response=>(this.dataset = response.data.dataset))
+				.catch(error=>{
+					console.log(error)
+					this.errored = true
+				})
+				.finally(()=>this.loading=false)
+		},
+		updated() {
+			if (this.check) {
+				console.log(this.check);
+				this.$nextTick(function () {
+					axios
+						.post('http://127.0.0.1:8000/calorie_page/get_calorie_info/', {
+							calorie_date : this.calorie_date,
+							username : this.username
+						})
+						.then(response=>(this.dataset = response.data.dataset))
+				})
+				this.check = false;
+				console.log(this.check);
+			}
+		}
+	})
+<!--		methods: {-->
+<!--			get_calorie: function(event) {-->
+
+<!--				this.username = document.getElementById('span_head_username').innerHTML;-->
+<!--				this.calorie_date = event.target.value;-->
+
+<!--				axios-->
+<!--					.post('/calorie_page/get_calorie_info/',{-->
+<!--						calorie_date : this.calorie_date,-->
+<!--						username: this.username-->
+<!--					})-->
+<!--					.then(response=>(this.dataset = response.data.dataset))-->
+<!--					.catch(error=>{-->
+<!--						console.log(error)-->
+<!--						this.errored = true-->
+<!--					})-->
+<!--					.finally(()=>this.loading=false)-->
+<!--			}-->
+<!--		}-->
+
+	$( "#pick_calorie_date" ).datepicker({
+		onSelect: function(dateText) {
+			vm.calorie_date = dateText;
+			vm.check = true;
+		}
+	})
+
+	$( function() {
+		$( "#tabs" ).tabs();
+	} );
+
+
+<!--	var model = { title: '<h2> 선택된 사진이 없습니다. </h2>' }-->
+<!--	var img = new Vue({-->
+<!--		el: '#camera_app',-->
+<!--		data() {-->
+<!--			return {-->
+<!--				image: "my image",-->
+<!--			};-->
+<!--		},-->
+<!--		methods: {-->
+<!--			getImg: function() {-->
+<!--				var canvas = document.getElementById('canvas');-->
+<!--				var context = canvas.getContext('2d');-->
+<!--				var video = document.getElementById('video');-->
+
+<!--				context.drawImage(video, 0, 0, 800, 480);-->
+<!--			},-->
+<!--			selectImg(file) {-->
+<!--				this.image = file-->
+<!--			},-->
+<!--			sendImg: function() {-->
+<!--				const formData = new FormData();-->
+<!--				var canvas = document.getElementById('canvas');-->
+<!--				formData.append("image", canvas);-->
+<!--				axios.post(-->
+<!--					"http://127.0.0.1:8000/camera/get_img/",-->
+<!--					formData,-->
+<!--					{-->
+<!--						headers: {-->
+<!--							"Content-Type": "multipart/form-data",-->
+<!--						},-->
+<!--            		}-->
+<!--				).then((res) => {-->
+<!--					console.log(res);-->
+<!--				})-->
+<!--			}-->
+<!--		}-->
+<!--	});-->
+
+<!--	// Set constraints for the video stream-->
+<!--	var constraints = { video: { facingMode: "environment" }, audio: false };-->
+
+<!--	// Define constants-->
+<!--	const cameraView = document.querySelector("#camera&#45;&#45;view"),-->
+<!--		cameraOutput = document.querySelector("#camera&#45;&#45;output"),-->
+<!--		cameraSensor = document.querySelector("#camera&#45;&#45;sensor"),-->
+<!--		cameraTrigger = document.querySelector("#camera&#45;&#45;trigger")-->
+<!--	// Access the device camera and stream to cameraView-->
+<!--	function cameraStart() {-->
+<!--		navigator.mediaDevices-->
+<!--			.getUserMedia(constraints)-->
+<!--			.then(function(stream) {-->
+<!--			track = stream.getTracks()[0];-->
+<!--			cameraView.srcObject = stream;-->
+<!--		})-->
+<!--		.catch(function(error) {-->
+<!--			console.error("Oops. Something is broken.", error);-->
+<!--		});-->
+<!--	}-->
+<!--	// Take a picture when cameraTrigger is tapped-->
+<!--	cameraTrigger.onclick = function() {-->
+<!--		cameraSensor.width = cameraView.videoWidth;-->
+<!--		cameraSensor.height = cameraView.videoHeight;-->
+<!--		cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);-->
+<!--		cameraOutput.src = cameraSensor.toDataURL("image/webp");-->
+<!--		cameraOutput.classList.add("taken");-->
+<!--	};-->
+<!--	// Start the video stream when the window loads-->
+<!--	window.addEventListener("load", cameraStart, false);-->
+
+</script>
+<script type="text/javascript">
+<!--	var canvas = document.getElementById('canvas');-->
+<!--	var context = canvas.getContext('2d');-->
+<!--	var video = document.getElementById('video');-->
+
+<!--	document.getElementById("snap").addEventListener("click", function() {-->
+<!--    	context.drawImage(video, 0, 0, 800, 480);-->
+<!--    	const imageString = canvas.toDataURL();-->
+<!--	  	// send image to server-->
+<!--	  	fetch('http://127.0.0.1:8000/camera/', {-->
+<!--			method: "POST",-->
+<!--			cache: "no-cache",-->
+<!--			credentials: "same-origin",-->
+<!--			headers: {-->
+<!--				"Content-Type": "application/json",-->
+<!--			},-->
+<!--			body: JSON.stringify({-->
+<!--				imageString: imageString,-->
+<!--			}),-->
+<!--	  	})-->
+<!--	});-->
+<!--	const fileInput = document.getElementById('file-input');-->
+
+<!--	fileInput.addEventListener('change', (e) => doSomethingWithFiles(e.target.files));-->
+
+	const input = document.getElementById('image_uploads');
+    const preview = document.getElementById('preview');
+
+    function comeback() {
+    	console.log("click")
+    }
+
+    input.style.opacity = 0;
+
+    input.addEventListener('change', updateImageDisplay);
+
+    function updateImageDisplay() {
+      while(preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+      }
+
+      const curFiles = input.files;
+      if(curFiles.length === 0) {
+        const para = document.createElement('p');
+        para.textContent = 'No files currently selected for upload';
+        preview.appendChild(para);
+      } else {
+        const list = document.createElement('ol');
+        preview.appendChild(list);
+
+        for(const file of curFiles) {
+          const listItem = document.createElement('li');
+          const para = document.createElement('p');
+
+          if(validFileType(file)) {
+            para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;
+            const image = document.createElement('img');
+            image.src = URL.createObjectURL(file);
+
+<!--			listItem.appendChild(para);-->
+            listItem.appendChild(image);
+
+          } else {
+            para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+            listItem.appendChild(para);
+          }
+
+          list.appendChild(listItem);
+        }
+      }
+    }
+
+// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+    const fileTypes = [
+        'image/apng',
+        'image/bmp',
+        'image/gif',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/svg+xml',
+        'image/tiff',
+        'image/webp',
+        `image/x-icon`
+    ];
+
+    function validFileType(file) {
+      return fileTypes.includes(file.type);
+    }
+
+    function returnFileSize(number) {
+      if(number < 1024) {
+        return number + 'bytes';
+      } else if(number > 1024 && number < 1048576) {
+        return (number/1024).toFixed(1) + 'KB';
+      } else if(number > 1048576) {
+        return (number/1048576).toFixed(1) + 'MB';
+      }
+    }
+</script>
+
+
+
+<!-- SNS 공유용 주소 연결 용 -->
+<script type="text/javascript" async>
+  var url_default_ks = "https://story.kakao.com/share?url=";
+  var url_default_fb = "https://www.facebook.com/sharer/sharer.php?u=";
+  var url_default_tw_txt = "https://twitter.com/intent/tweet?text=";
+  var url_default_tw_url = "&url=";
+  var url_default_band = "http://band.us/plugin/share?body=";
+  var url_route_band = "&route=";
+  var url_default_naver = "http://share.naver.com/web/shareView.nhn?url=";
+  var title_default_naver = "&title=";
+
+  var url_this_page = location.href;
+  var title_this_page = document.title;
+
+  var url_combine_ks = url_default_ks + url_this_page;
+  var url_combine_fb = url_default_fb + url_this_page;
+<!--  var url_combine_tw = url_default_twg_txt + document.title + url_default_tw_url + url_this_page;-->
+  var url_combine_band = url_default_band + encodeURI(url_this_page)+ '%0A' + encodeURI(title_this_page)+'%0A' + '&route=tistory.com';
+  var url_combine_naver = url_default_naver + encodeURI(url_this_page) + title_default_naver + encodeURI(title_this_page);
+</script>
+<style>
+	<!-- #image_iuput_form -->
+	#image_iuput_form {
+      width: 600px;
+      background: #ccc;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid black;
+    }
+
+    #image_iuput_form ol {
+      padding-left: 0;
+    }
+
+    #image_iuput_form li, #image_iuput_form div > p {
+      background: #eee;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      list-style-type: none;
+      border: 1px solid black;
+    }
+
+    #image_iuput_form img {
+   	  margin: 0 auto;
+      width: 60%;
+      order: 1;
+    }
+
+    #image_iuput_form p {
+      line-height: 32px;
+      padding-left: 10px;
+    }
+
+    #image_iuput_form button {
+      background-color: #7F9CCB;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px ridge black;
+      font-size: 1.2rem;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    #image_iuput_form label{
+      background-color: #7F9CCB;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px ridge black;
+      font-size: 1.2rem;
+      height: auto;
+      text-align : center;
+    }
+
+    #image_iuput_form label:hover, #image_iuput_form button:hover {
+      background-color: #2D5BA3;
+      color: white;
+    }
+
+    #image_iuput_form label:active, #image_iuput_form button:active {
+      background-color: #0D3F8F;
+      color: white;
+    }
+
+</style>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+<link type="text/css" rel="stylesheet" href="{% static 'calorie/calorie.css' %}">
+{% block content %}
+<!-- calorie info -->
+<div class="container" id="Calorie" style="margin-bottom: 50px;">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="main_heading">
+				<h1>Calorie</h1>
+				<div class="text-center"><span class="underline"></span></div>
+			</div>
+		</div><!-- End col-md-12 -->
+	</div><!-- End row -->
+
+	<div id="calorie_app" class="row">
+		<div id="tabs">
+			<ul>
+				<li id="calorie_specific_date"><a href="#tabs_calorie">날짜 선택</a></li>
+			</ul>
+			<div class="row" style="margin-bottom: 30px;">
+				<div id="tabs_calorie">
+					<div class="col-md-12" style="margin-bottom: 20px;">
+						<h4>날짜 선택 :
+							<input type="text" name="calorie_date" class="datepicker" id="pick_calorie_date"
+								    v-model="calorie_date">
+						</h4>
+					</div>
+					<div class="col-md-4">
+						<div class="calorie-box">
+							<div class="calorie-box-time"><strong>아침</strong></div>
+							<h4>아침 칼로리 섭취량</h4>
+							<div class="calorie-box-features">
+								<ul v-for="data in dataset" v-if="data.pub_time == 'breakfast'">
+									<li>
+										<p>[[data.food_name]] : [[data.calorie]]kcal</p>
+										<p><img :src="data.food_img" width="300px" height="200px"></p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div><!-- End col-dm-4 -->
+					<div class="col-md-4 calorie-box-best">
+						<div class="calorie-box">
+							<div class="calorie-box-time"><strong>점심</strong></div>
+							<h4>점심 칼로리 섭취량</h4>
+							<div class="calorie-box-features">
+								<ul v-for="data in dataset" v-if="data.pub_time == 'lunch'">
+									<li>
+										<p>[[data.food_name]] : [[data.calorie]]kcal</p>
+										<p><img :src="data.food_img" width="300px" height="200px"></p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div><!-- End col-dm-4 -->
+					<div class="col-md-4">
+						<div class="calorie-box">
+							<div class="calorie-box-time"><strong>저녁</strong></div>
+							<h4>저녁 칼로리 섭취량</h4>
+							<div class="calorie-box-features">
+								<ul v-for="data in dataset" v-if="data.pub_time == 'dinner'">
+									<li>
+										<p>[[data.food_name]] : [[data.calorie]]kcal</p>
+										<p><img :src="data.food_img" width="300px" height="200px"></p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div><!-- End col-dm-4 -->
+				</div><!-- End tabs_clorie -->
+
+<!--				<div id="tabs_last_week">-->
+
+<!--				</div>&lt;!&ndash; End tabs-tabs_last_week &ndash;&gt;-->
+
+<!--				<div id="tabs_last_month">-->
+
+<!--				</div>&lt;!&ndash; End tabs_last_month &ndash;&gt;-->
+			</div><!-- End row -->
+		</div><!-- End calorie_tabs -->
+
+	</div><!-- End row -->
+
+</div><!-- End container -->
+
+{% endblock %}

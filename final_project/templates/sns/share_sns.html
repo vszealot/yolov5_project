@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- SNS Table -->
+<div class="container" id="statistic_div">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="main_heading">
+				<h1>Statistics Information</h1>
+				<div  class="text-center"><span class="underline"></span></div>
+			</div>
+		</div><!-- End col-md-12 -->
+	</div><!-- End row -->
+
+	<div class="row">
+		<div id="tabs">
+			<ul>
+				<li id="food_photo"><a href="#tabs_photo">음식 사진첩</a></li>
+				<li id="statistic_graph"><a href="#tabs_statistics">통계 그래프</a></li>
+			</ul>
+			<div id="tabs_photo">
+				<div class="photo_title_box">
+					<h4>지난 일주일 동안의 식단 사진 / 날짜 선택 : <input type="text" id="sns_date" class="datepicker"></h4>
+				</div>
+				<div class="food_gallery">
+
+				</div>
+			</div><!-- End tabs_photo -->
+
+			<div id="tabs_statistics">
+                <div class="statistic_title_box">
+                	<h4>Period:
+						<select id="statistic_select_period" style="margin-left:15px;">
+							<option id="statistic_last-week">최근 일주일</option>
+							<option id="statistic_last-month">최근 한 달</option>
+						</select>
+					</h4>
+                </div>
+
+				<div class="statistic_photo">
+
+				</div>
+			</div><!-- End tabs_statistics -->
+		</div><!-- End sns_tabs -->
+	</div><!-- End row -->
+
+	<div class="row" style="margin-top:50px;">
+		<!-- SNS버튼 시작 -->
+		<div style="width: 100%; text-align: center; margin-bottom: 64px;">
+			<!-- 페이스북 공유 버튼 -->
+			<a href="" onclick="window.open(url_combine_fb, '', 'scrollbars=no, width=600, height=600'); return false;">
+			<img src="https://storage.googleapis.com/storage.chris-chris.ai/images/facebook.gif" title="페이스북으로 공유하기" class="sharebtn_custom" style="width: 32px;"></a>
+
+			<!-- 트위터 공유 버튼 -->
+			<a href="" onclick="window.open(url_combine_tw, '', 'scrollbars=no, width=600, height=600'); return false;">
+			<img src="https://storage.googleapis.com/storage.chris-chris.ai/images/twitter.gif" title="트위터로 공유하기" class="sharebtn_custom" style="width: 32px;"></a>
+
+			<!-- 카카오 스토리 공유 버튼 -->
+			<a href="" onclick="window.open(url_combine_ks, '', 'scrollbars=no, width=600, height=600'); return false;">
+			<img src="https://storage.googleapis.com/storage.chris-chris.ai/images/story.gif" title="카카오스토리로 공유하기" class="sharebtn_custom" style="width: 32px;"></a>
+
+			<!-- 네이버 공유 버튼 -->
+			<a href="" onclick="window.open(url_combine_naver, '', 'scrollbars=no, width=600, height=600'); return false;">
+			<img src="https://storage.googleapis.com/storage.chris-chris.ai/images/naver.gif" title="네이버로 공유하기" class="sharebtn_custom" style="width: 32px;"></a>
+
+			<!-- 밴드 공유 버튼 -->
+			<a href="" onclick="window.open(url_combine_band, '', 'scrollbars=no, width=584, height=635'); return false;">
+			<img src="https://storage.googleapis.com/storage.chris-chris.ai/images/band.gif" title="밴드로 공유하기" class="sharebtn_custom" style="width: 32px;"></a>
+		</div>
+		<!-- SNS버튼 끝 -->
+	</div><!-- End row -->
+</div><!-- End container -->
+
+<!-- End SNS Table -->
+
+{% endblock %}

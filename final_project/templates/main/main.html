@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Price Table -->
+<div class="container my-3" id="app">
+    <div id="tabs" style="margin-top: 30px; margin-bottom: 30px;">
+    <ul>
+        <li id="calorie_specific_date"><a href="#tabs_menu">날짜 선택</a></li>
+    </ul>
+        <div id="tabs_menu"></div>
+            <div class="text-center" style="margin-top: 10px; margin-bottom: 30px;">
+                <input type="text" aria-label="start_date" class="datepicker text-center" v-model="start_date"
+                       readonly="readonly" id="main_start_date">&nbsp&nbsp&nbsp~&nbsp&nbsp
+                <input type="text" aria-label="end_date" class="datepicker text-center" v-model="end_date"
+                       readonly="readonly" id="main_end_date">
+                <input type="hidden" aria-label="username" v-model="end_date" value="{{ user.username }}">
+            </div>
+            <table class="table" style="margin: auto; text-align: center">
+                <thead>
+                <tr class="thead-dark">
+                    <th style="text-align: center;">랭킹</th>
+                    <th style="text-align: center;">메뉴</th>
+                    <th style="text-align: center;">횟수</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!--  여기에 <tr v-for -->
+                    <tr v-for="(data, idx) in datas">
+                        <td>[[idx + 1]]</td>
+                        <td>[[data.menu]]</td>
+                        <td>[[data.count]]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- End Price Table -->
+{% endblock %}

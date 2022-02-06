@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- calorie info -->
+<div class="container" style="margin-bottom: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main_heading">
+                <h1>Camera</h1>
+                <div class="text-center"><span class="underline"></span></div>
+            </div>
+        </div><!-- End col-md-12 -->
+    </div><!-- End row -->
+<!--    <input type="file" accept="image/*" id="file-input">-->
+    <div id="tabs">
+    <ul>
+        <li id="calorie_specific_date"><a href="#tabs_camera">사진 촬영/선택</a></li>
+    </ul>
+    <div id="image_iuput_form" style="margin-top: 25px; margin-bottom: 20px;">
+        {% if input_date %}
+    <form method="post" action="{% url 'camera_main:get_img' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" aria-label="input_date" value="{{input_date}}" id="input_date" name="input_date" class="datepicker text-center" readonly="readonly" style="margin-right: 10px;">
+        {% if meal == 'breakfast' %}
+        <input type="radio" id="breakfast" name="meal" value="breakfast" checked>
+        {% else %}
+        <input type="radio" id="breakfast" name="meal" value="breakfast">
+        {% endif %}
+        아침
+        {% if meal == 'lunch' %}
+        <input type="radio" id="lunch" name="meal" value="lunch" checked>
+        {% else %}
+        <input type="radio" id="lunch" name="meal" value="lunch">
+        {% endif %}
+        점심
+        {% if meal == 'dinner' %}
+        <input type="radio" id="dinner" name="meal" value="dinner" checked>
+        {% else %}
+        <input type="radio" id="dinner" name="meal" value="dinner">
+        {% endif %}
+        저녁
+        <div class="preview" id="preview" style="margin-top: 20px;">
+            <p>No files currently selected for upload</p>
+        </div>
+        <div style="text-align : right;">
+            <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+            <button>Submit</button>
+            <input type="file" id="image_uploads" name="image_uploads" accept="image/*" multiple>
+            {% if user.is_authenticated %}
+            <input type="hidden" name="username" value="{{ user.username }}">
+            {% endif %}
+        </div>
+    </form>
+        {% else %}
+        <form method="post" action="{% url 'camera_main:get_img' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" aria-label="input_date" v-model="input_date" id="input_date" name="input_date" class="datepicker text-center" readonly="readonly">
+        <input type="radio" id="breakfast" name="meal" value="breakfast">
+        아침
+        <input type="radio" id="lunch" name="meal" value="lunch" checked>
+        점심
+        <input type="radio" id="dinner" name="meal" value="dinner">
+        저녁
+        <div class="preview" id="preview">
+            <p>No files currently selected for upload</p>
+        </div>
+        <div style="text-align : right;">
+            <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+            <button>Submit</button>
+            <input type="file" id="image_uploads" name="image_uploads" accept="image/*" multiple>
+            {% if user.is_authenticated %}
+            <input type="hidden" name="username" value="{{ user.username }}">
+            {% endif %}
+        </div>
+    </form>
+        {% endif %}
+    </div>
+    </div>
+</div><!-- End container -->
+{% endblock %}

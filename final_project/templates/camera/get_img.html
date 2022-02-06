@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- calorie info -->
+<div class="container" style="margin-bottom: 50px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main_heading">
+                <h1>Camera</h1>
+                <div class="text-center"><span class="underline"></span></div>
+            </div>
+        </div><!-- End col-md-12 -->
+    </div><!-- End row -->
+<!--    <input type="file" accept="image/*" id="file-input">-->
+    <div id="tabs">
+    <ul>
+        <li id="calorie_specific_date"><a href="#tabs_camera">사진 확인</a></li>
+    </ul>
+    <div id="image_iuput_form" style="margin-top: 20px; margin-bottom: 20px;">
+    <form method="post" action="{% url 'camera_main:put_meal_info' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" aria-label="input_date" value="{{input_date}}" class="datepicker text-center" disabled>
+        <input type="hidden" aria-label="input_date" value="{{input_date}}" id="input_date" name="input_date" class="datepicker text-center" readonly="readonly">
+        {% if meal == 'breakfast' %}
+        <input type="radio" id="breakfast" name="meal" value="breakfast" checked>
+        {% else %}
+        <input type="radio" id="breakfast" name="meal" value="breakfast" disabled>
+        {% endif %}
+        아침
+        {% if meal == 'lunch' %}
+        <input type="radio" id="lunch" name="meal" value="lunch" checked>
+        {% else %}
+        <input type="radio" id="lunch" name="meal" value="lunch" disabled>
+        {% endif %}
+        점심
+        {% if meal == 'dinner' %}
+        <input type="radio" id="dinner" name="meal" value="dinner" checked>
+        {% else %}
+        <input type="radio" id="dinner" name="meal" value="dinner" disabled>
+        {% endif %}
+        저녁
+        <div class="userResult" id="userResult">
+            <ol>
+                <li>
+                    <img src="{{imgsrc}}">
+                </li>
+            </ol>
+        </div>
+        <div style="text-align : right;">
+            <button type="submit" formaction="{% url 'camera_main:camera' %}" formmethod="post">사진교체</button>
+            <button>저장하기</button>
+            {% if user.is_authenticated %}
+            <input type="hidden" name="username" value="{{ user.username }}">
+            <input type="hidden" name="foodname" value="{{ foodname }}">
+            <input type="hidden" name="imgsrc" value="{{ imgsrc }}">
+            {% endif %}
+        </div>
+    </form>
+    </div>
+    </div>
+</div><!-- End container -->
+{% endblock %}
