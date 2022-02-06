@@ -7,13 +7,13 @@
 
 ## 개발환경
 Python, Pytorch, Vue.js, MariaDB
-<br>
+<br><br>
 
 ## 담당업무
 * Yolov5 모델 전이학습
 * 모델 학습을 위한 데이터 전처리
 * Front-end, Back-end 개발
-<br>
+<br><br>
 
 ## 결과
 
