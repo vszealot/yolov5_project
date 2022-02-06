@@ -22,6 +22,6 @@ Python, Django, Pytorch, HTML5, CSS3, Javascript, Vue.js, MariaDB 등
 <br><br>
 
 ## 결과
-* 로그인, 회원가입<br><img width="80%" src="https://user-images.githubusercontent.com/44217050/152697353-b46c1dbc-df47-4dc7-adc3-87fa35c55654.gif"/><br>
-* 선택한 기간동안 먹은 음식의 횟수 제공<br><img width="80%" src="https://user-images.githubusercontent.com/44217050/152697361-0b1cb787-c5bc-4a50-aee2-f05b81ff61e9.gif"/><br>
+* 로그인, 회원가입<br><img width="80%" src="https://user-images.githubusercontent.com/44217050/152697353-b46c1dbc-df47-4dc7-adc3-87fa35c55654.gif"/><br><br>
+* 선택한 기간동안 먹은 음식의 횟수 제공<br><img width="80%" src="https://user-images.githubusercontent.com/44217050/152697361-0b1cb787-c5bc-4a50-aee2-f05b81ff61e9.gif"/><br><br>
 * 선택할 날짜에 업로드 했던 음식의 이미지 및 정보 제공<br><img width="80%" src="https://user-images.githubusercontent.com/44217050/152697363-4758b3b8-2392-428a-8e98-6b42ce561a3b.gif"/>
