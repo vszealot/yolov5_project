@@ -15,5 +15,9 @@ Python, Pytorch, Vue.js, MariaDB
 * Front-end, Back-end 개발
 <br><br>
 
-## 결과
+## 주요기능
+* 회원가입, 로그인
+* 기기에 따른 이미지 업로드(데스크탑 - 이미지 업로드, 모바일 - 이미지 촬영or업로드)
+* 
 
+## 결과
