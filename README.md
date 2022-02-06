@@ -19,7 +19,7 @@ Python, Django, Pytorch, HTML5, CSS3, Javascript, Vue.js, MariaDB 등
 * 회원가입, 로그인
 * 기기에 따라 변하는(데스크탑 - 이미지 업로드, 모바일 - 이미지 촬영or업로드) 이미지 업로드 방식
 * 업로드 된 이미지의 음식분류 및 업로드 한 이미지 조회 
-* <br><br>
+<br><br>
 
 ## 결과
 * 로그인, 회원가입
